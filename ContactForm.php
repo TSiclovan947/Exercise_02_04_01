@@ -25,6 +25,7 @@
     $email = "";
     $subject = "";
     $message = "";
+    //Function to validate that the email is in the correct format
     function validateEmail($data, $fieldName) {
         global $errorCount;
         if (empty($data)) {
@@ -32,7 +33,7 @@
             ++$errorCount;
             $retval = "";
         }
-        else {
+        else { //Uses regular expression to validate the email
             $retval = trim($data);
             $retval = stripslashes($retval);
             $pattern = "/^[\w-]+(\.[\w-]+)*@" . "[\w-]+(\.[\w-]+)*" . "(\.[a-z]{2,})$/i";
@@ -43,6 +44,8 @@
         }
         return $retval;
     }
+    //Function to validate the required input fields
+    //data and fieldname taken as parameters
     function validateInput($data, $fieldName) {
         global $errorCount;
         if (empty($data)) {
@@ -57,7 +60,7 @@
         return $retval;
     }
     //Function to take care of displaying the form
-    //Sticky form
+    //Sticky form, embedded HTML in the PHP
     function displayForm($sender, $email, $subject, $message) {
     ?>
     <h2 style="text-align: center">Contact Me</h2>
@@ -73,6 +76,7 @@
     </form>
     <?php
     }
+    //If that will use the POST superglobal to test for a submit
     if (isset($_POST['Submit'])) {
         $sender = validateInput($_POST['Sender'], "Your Name");
         $email = validateEmail($_POST['Email'], "Your E-mail");
@@ -85,12 +89,14 @@
             $showForm = true;
         }
     }
+    //Will get this error message if not all of the fields are filled out
     if ($showForm) {
         if ($errorCount > 0) {
             echo "<p>Please re-enter the form information below.</p>\n";
         }
         displayForm($sender, $email, $subject, $message);
     }
+    //Makes sure the email will be sent to the following email address provided
     else {
         $senderAddress = "$sender <$email>";
         $headers = "From:
