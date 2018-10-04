@@ -21,10 +21,10 @@
     <article>
     <br>
     <br>
-	    <form style="text-align: center" method="get" action="Paycheck.php">
+	    <form style="text-align: center" method="get" action="Paycheck.php" value="<?php echo $number; ?>">
         <p>Number of Hours Worked:
             <!--First text box to take in the number of hours worked-->
-            <input type="text" name="hours">
+            <input type="text" name="hours" value="<?php echo $number; ?>">
         </p>
         <p>Employee's Hourly Wage:
             <!--Second text box to take in the hourly wage-->

@@ -23,6 +23,7 @@
     $errorCount = 0;
     $workHours = $_GET["hours"];
     $wages = $_GET["pay"];
+    $number = "";
     
     //Echo the hours worked
     echo "Number of Hours Worked: $workHours hours.<br>";
